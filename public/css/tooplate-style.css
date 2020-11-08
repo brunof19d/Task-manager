@@ -686,6 +686,25 @@ http://www.tooplate.com/view/2106-soft-landing
     color: #ffffff;
   }
 
+.icon-github {
+  display: inline-block;
+  list-style: none;
+}
+
+.icon-github li a {
+  border-radius: 50px;
+  color: #202020;
+  font-size: 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.icon-github li a:hover {
+  background: #536976;
+  color: #ffffff;
+  padding: 10px;
+}
+
 
 
   /*---------------------------------------

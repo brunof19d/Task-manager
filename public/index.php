@@ -6,6 +6,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../config/config.php';
 
 $routes = require __DIR__ . '/../config/routes.php';
 $pathInfo = $_SERVER['PATH_INFO'];
@@ -19,6 +20,18 @@ if (!array_key_exists($pathInfo, $routes)) {
     http_response_code(404);
     die();
 }
+
+session_start();
+
+
+
+$routeLogin = stripos($pathInfo, 'login');
+
+if ($pathInfo != '/home' && isset($_SESSION['logged']) === FALSE && $routeLogin === FALSE) {
+    header('Location: /login');
+    exit();
+}
+
 
 $psr17Factory = new Psr17Factory();
 $creator = new ServerRequestCreator(

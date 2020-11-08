@@ -1,8 +1,12 @@
 <?php
 
 $builder = new DI\ContainerBuilder();
-$container = $builder->build();
-return $container;
+$builder->addDefinitions([
+    \Doctrine\ORM\EntityManagerInterface::class => function () {
+        return (new \App\Infrastructure\EntityManagerCreator())->getEntityManager();
+    }
+]);
+return $builder->build();
 
 
 
