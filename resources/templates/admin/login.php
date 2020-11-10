@@ -6,10 +6,10 @@
                 <h3 class="h2 mb-0">Restricted area</h3>
                 <span>Use the form below to access the Administrative Area.</span>
             </div>
-
             <div class="card-body p-5">
+                <?php require_once __DIR__ . '/../../includes/alert-message.php'; ?>
                 <div class="form-group">
-                    <label for="inputEmail">* User:</label>
+                    <label for="inputEmail">* Email:</label>
                     <input type="email" name="email" id="inputEmail" placeholder="user@email.com" class="form-control"/>
                 </div>
                 <div class="form-group">

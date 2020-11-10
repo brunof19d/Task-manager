@@ -13,7 +13,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class PersistUsers implements RequestHandlerInterface
+class AddUser implements RequestHandlerInterface
 {
     use FlashMessage;
 
@@ -40,13 +40,12 @@ class PersistUsers implements RequestHandlerInterface
             }
 
             $this->admin->setPassword($data['password']);
-
             $this->admin->setActive($data['active']);
 
             $this->entityManager->persist($this->admin);
             $this->entityManager->flush();
 
-            return new Response(200, ['Location' => '/home']);
+            return new Response(200, ['Location' => '/admin/users']);
         } catch (Exception $error) {
             echo 'Error: ' . $this->alertMessage('danger', $error->getMessage());
             return new Response(302, ['Location' => '/admin/users-add']);

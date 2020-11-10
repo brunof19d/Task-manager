@@ -23,15 +23,12 @@ if (!array_key_exists($pathInfo, $routes)) {
 
 session_start();
 
-
-
 $routeLogin = stripos($pathInfo, 'login');
 
 if ($pathInfo != '/home' && isset($_SESSION['logged']) === FALSE && $routeLogin === FALSE) {
     header('Location: /login');
     exit();
 }
-
 
 $psr17Factory = new Psr17Factory();
 $creator = new ServerRequestCreator(

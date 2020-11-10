@@ -52,9 +52,9 @@
             <li class="nav-item"><a class="nav-link" href="/admin/users">Users</a></li>
         </ul>
 
-        <span class="navbar-text">
-            Welcome<strong class="text-white"></strong><a href="" class="text-warning">Logout</a>
-        </span>
+        <?php if ($_SERVER['PATH_INFO'] !== '/login'): ?>
+        <span class="navbar-text"><a href="/logout" class="text-warning">Logout</a></span>
+        <?php endif; ?>
 
     </div>
 

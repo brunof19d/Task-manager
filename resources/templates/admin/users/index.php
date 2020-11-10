@@ -1,4 +1,15 @@
-<?php require_once __DIR__ . '/../../../includes/header-admin.php'; ?>
+<?php
+
+require_once __DIR__ . '/../../../includes/header-admin.php';
+
+/**
+ * @var \App\View\Admin\Users\TableUsers $users
+ * @var \App\Entity\Admin $user
+ * @var \App\Helper\HelperFunctions $helper
+ *
+ */
+
+?>
 
     <div class="jumbotron container p-5 mb-5">
         <h1 class="h2">Users</h1>
@@ -8,6 +19,7 @@
     </div>
 
     <div class="container">
+        <?php require_once __DIR__ . '/../../../includes/alert-message.php'; ?>
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
@@ -18,21 +30,23 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>admin@admin.com</td>
-                <td>Yes | No</td>
-                <td>
-                    <a href="/admin/user-edit" class="btn btn-primary" title="Edit">
-                        <i class="far fa-edit"></i>
-                    </a>
-                </td>
-                <td>
-                    <a href="/delete-user" class="btn btn-danger" title="Delete">
-                        <i class="far fa-trash-alt"></i>
-                    </a>
-                </td>
-            </tr>
+            <?php foreach ($users as $user): ?>
+                <tr>
+                    <th scope="row"><?= $user->getId(); ?></th>
+                    <td><?= $user->getEmail(); ?></td>
+                    <td><?= $helper->translatesUserActive($user->getActive()); ?></td>
+                    <td>
+                        <a href="/admin/user-edit?id=<?= $user->getId(); ?>" class="btn btn-primary" title="Edit">
+                            <i class="far fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/delete-user?id=<?= $user->getId(); ?>" class="btn btn-danger" title="Delete">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
         </table>
     </div>

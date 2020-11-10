@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\View\Admin;
-
 
 use App\Helper\RenderHtml;
 use Nyholm\Psr7\Response;
@@ -17,7 +15,7 @@ class AdminHome implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $html = $this->render('admin/index.php', [
-            'title' => 'Admin | Home'
+            'title' => 'Admin | Home',
         ]);
         return new Response(200, [], $html);
     }

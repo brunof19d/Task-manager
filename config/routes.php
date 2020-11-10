@@ -1,7 +1,10 @@
 <?php
 
+use App\Controller\Logout;
 use App\Controller\MakeLogin;
-use App\Controller\Users\PersistUsers;
+use App\Controller\Users\AddUser;
+use App\Controller\Users\DeleteUser;
+use App\Controller\Users\UpdateUser;
 use App\View\Admin\AdminHome;
 use App\View\Admin\Contact\Contact;
 use App\View\Admin\Testimonial\TableTestimonial;
@@ -19,6 +22,7 @@ return [
     '/home' => Home::class,
     '/login' => Login::class,
     '/make-login' => MakeLogin::class,
+    '/logout' => Logout::class,
 
     /* ADMIN SECTION */
 
@@ -29,7 +33,9 @@ return [
     '/admin/users' => TableUsers::class,
     '/admin/user-edit' => UserEdit::class,
     '/admin/user-add' => UserAdd::class,
-    '/save-user' => PersistUsers::class,
+    '/save-user' => AddUser::class,
+    '/update-user' => UpdateUser::class,
+    '/delete-user' => DeleteUser::class,
 
     // Contact Admin
     '/admin/contact' => Contact::class,

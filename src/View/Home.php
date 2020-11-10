@@ -3,7 +3,6 @@
 
 namespace App\View;
 
-
 use App\Helper\RenderHtml;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
