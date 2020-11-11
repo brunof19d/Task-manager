@@ -1,4 +1,12 @@
-<?php require_once __DIR__ . '/../../../includes/header-admin.php'; ?>
+<?php
+
+require_once __DIR__ . '/../../../includes/header-admin.php';
+/**
+ * @var \App\View\Admin\Contact\TableContact $contacts
+ * @var \App\Entity\Contact $contact
+ */
+
+?>
 
 <div class="jumbotron container p-5 mb-5">
     <h1 class="h2">Contact</h1>
@@ -6,6 +14,7 @@
     <p class="lead mb-0">Check below all the messages felt by the website's contact form.</p>
 </div>
 <div class="container">
+    <?php require_once __DIR__ . '/../../../includes/alert-message.php'; ?>
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
@@ -18,14 +27,20 @@
         </tr>
         </thead>
         <tbody>
+        <?php foreach ($contacts as $contact): ?>
         <tr>
-            <th scope="row">1</th>
-            <td>John</td>
-            <td>john@john.com</td>
-            <td>Message here</td>
-            <td>19/04/2020</td>
-            <td><a href="" class="btn btn-danger" title="Delete"><i class="far fa-trash-alt"></i></a></td>
+            <th scope="row"><?= $contact->getId(); ?></th>
+            <td><?= $contact->getName(); ?></td>
+            <td><?= $contact->getEmail(); ?></td>
+            <td><?= nl2br($contact->getText()); ?></td>
+            <td><?= $contact->getDate()->format('d/m/Y'); ?></td>
+            <td>
+                <a href="/delete-contact?id=<?= $contact->getId(); ?>" class="btn btn-danger" title="Delete">
+                    <i class="far fa-trash-alt"></i>
+                </a>
+            </td>
         </tr>
+        <?php endforeach; ?>
         </tbody>
     </table>
 </div>

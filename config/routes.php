@@ -1,12 +1,14 @@
 <?php
 
+use App\Controller\Contact\AddContact;
+use App\Controller\Contact\DeleteContact;
 use App\Controller\Logout;
 use App\Controller\MakeLogin;
 use App\Controller\Users\AddUser;
 use App\Controller\Users\DeleteUser;
 use App\Controller\Users\UpdateUser;
 use App\View\Admin\AdminHome;
-use App\View\Admin\Contact\Contact;
+use App\View\Admin\Contact\TableContact;
 use App\View\Admin\Testimonial\TableTestimonial;
 use App\View\Admin\Testimonial\TestimonialAdd;
 use App\View\Admin\Testimonial\TestimonialEdit;
@@ -37,14 +39,14 @@ return [
     '/update-user' => UpdateUser::class,
     '/delete-user' => DeleteUser::class,
 
-    // Contact Admin
-    '/admin/contact' => Contact::class,
+    // TableContact Admin
+    '/admin/contact' => TableContact::class,
+    '/save-contact' => AddContact::class,
+    '/delete-contact' => DeleteContact::class,
 
     // Testimonial Admin
     '/admin/testimonial' => TableTestimonial::class,
     '/admin/testimonial-add' => TestimonialAdd::class,
     '/admin/testimonial-edit' => TestimonialEdit::class
-
-
 
 ];
