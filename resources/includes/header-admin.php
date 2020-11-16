@@ -18,15 +18,8 @@
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400');
-
         body {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 13px;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
+            font-size: 15px;
         }
     </style>
 </head>

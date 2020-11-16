@@ -1,10 +1,12 @@
 <?php
 
+/**
+ * @author Bruno Dadario <brunof19d@gmail.com>
+ */
 
 namespace App\Entity;
 
 use DateTimeImmutable;
-use Doctrine\Common\Collections\ArrayCollection;
 use Exception;
 
 /**

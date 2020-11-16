@@ -44,3 +44,5 @@ require_once __DIR__ . '/../../../includes/header-admin.php';
         </tbody>
     </table>
 </div>
+
+<?php require_once __DIR__ . '/../../../includes/footer-admin.php'; ?>

@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Bruno Dadario <brunof19d@gmail.com>
+ */
+
 namespace App\View\Admin;
 
 use App\Helper\RenderHtml;

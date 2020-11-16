@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400');
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  overflow-x: hidden;
+  background: #f9f9f9;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
 /*
 
 Template 2106 Soft Landing
@@ -5,16 +18,6 @@ Template 2106 Soft Landing
 http://www.tooplate.com/view/2106-soft-landing
 	
 */
- 
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400');
-
-  body {
-    font-family: 'Open Sans', sans-serif;
-    overflow-x: hidden;
-    background: #f9f9f9;
-  }
-
-
 
   /*---------------------------------------
      TYPOGRAPHY              

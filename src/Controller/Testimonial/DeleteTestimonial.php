@@ -1,21 +1,18 @@
 <?php
 
-/**
- * @author Bruno Dadario <brunof19d@gmail.com>
- */
 
-namespace App\Controller\Users;
+namespace App\Controller\Testimonial;
 
-use App\Entity\Admin;
+
+use App\Entity\Testimonial;
 use App\Helper\FlashMessage;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class DeleteUser implements RequestHandlerInterface
+class DeleteTestimonial implements RequestHandlerInterface
 {
     use FlashMessage;
 
@@ -26,22 +23,21 @@ class DeleteUser implements RequestHandlerInterface
         $this->entityManager = $entityManager;
     }
 
-
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $redirect = new Response(302, ['Location' => '/admin/users']);
+        $redirect = new Response(302, ['Location' => '/admin/testimonial']);
         try {
-            $id = filter_var($request->getQueryParams()['id'], FILTER_VALIDATE_INT);
+            $id = $request->getQueryParams()['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+            if ($id === FALSE && is_null($id)) throw new \Exception('ID Testimonial Invalid');
 
-            if (is_null($id) || $id === FALSE) throw new Exception('ID user invalid');
-
-            $user = $this->entityManager->getReference(Admin::class, $id);
-            $this->entityManager->remove($user);
+            $testimonial = $this->entityManager->getReference(Testimonial::class, $id);
+            $this->entityManager->remove($testimonial);
             $this->entityManager->flush();
 
-            $this->alertMessage('success', 'User removed with success');
+            $this->alertMessage('success', 'Testimonial removed with success');
             return $redirect;
-        } catch (Exception $error) {
+        } catch (\Exception $error) {
             $this->alertMessage('danger', $error->getMessage());
             return $redirect;
         }

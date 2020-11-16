@@ -4,6 +4,9 @@ use App\Controller\Contact\AddContact;
 use App\Controller\Contact\DeleteContact;
 use App\Controller\Logout;
 use App\Controller\MakeLogin;
+use App\Controller\Testimonial\AddTestimonial;
+use App\Controller\Testimonial\DeleteTestimonial;
+use App\Controller\Testimonial\UpdateTestimonial;
 use App\Controller\Users\AddUser;
 use App\Controller\Users\DeleteUser;
 use App\Controller\Users\UpdateUser;
@@ -47,6 +50,8 @@ return [
     // Testimonial Admin
     '/admin/testimonial' => TableTestimonial::class,
     '/admin/testimonial-add' => TestimonialAdd::class,
-    '/admin/testimonial-edit' => TestimonialEdit::class
-
+    '/admin/testimonial-edit' => TestimonialEdit::class,
+    '/save-testimonial' => AddTestimonial::class,
+    '/update-testimonial' => UpdateTestimonial::class,
+    '/delete-testimonial' => DeleteTestimonial::class
 ];

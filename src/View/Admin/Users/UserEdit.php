@@ -1,8 +1,10 @@
 <?php
 
+/**
+ * @author Bruno Dadario <brunof19d@gmail.com>
+ */
 
 namespace App\View\Admin\Users;
-
 
 use App\Entity\Admin;
 use App\Helper\FlashMessage;

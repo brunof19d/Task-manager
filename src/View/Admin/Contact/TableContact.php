@@ -1,8 +1,10 @@
 <?php
 
+/**
+ * @author Bruno Dadario <brunof19d@gmail.com>
+ */
 
 namespace App\View\Admin\Contact;
-
 
 use App\Entity\Contact;
 use App\Helper\RenderHtml;
