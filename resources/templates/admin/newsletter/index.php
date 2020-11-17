@@ -1,4 +1,13 @@
-<?php require_once __DIR__ . '/../../../includes/header-admin.php'; ?>
+<?php
+
+require_once __DIR__ . '/../../../includes/header-admin.php';
+
+/**
+ * @var \App\View\Admin\Newsletter\TableNewsletter $newsletters
+ * @var \App\Entity\Newsletter $newsletter
+ */
+
+?>
 
     <div class="jumbotron container p-5 mb-5">
         <h1 class="h2">Newsletter</h1>
@@ -22,12 +31,18 @@
             </thead>
 
             <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>email@email.com</td>
-                <td>19/10/1971</td>
-                <td><a href="" class="btn btn-danger" title="Delete"><i class="far fa-trash-alt"></i></a></td>
-            </tr>
+            <?php foreach ($newsletters as $newsletter): ?>
+                <tr>
+                    <th scope="row"><?= $newsletter->getId(); ?></th>
+                    <td><?= $newsletter->getEmail(); ?></td>
+                    <td><?= $newsletter->getDate()->format('d/m/Y');?></td>
+                    <td>
+                        <a href="/delete-newsletter?id=<?= $newsletter->getId(); ?>" class="btn btn-danger" title="Delete">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
             </tbody>
 
         </table>

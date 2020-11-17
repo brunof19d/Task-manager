@@ -4,6 +4,8 @@ use App\Controller\Contact\AddContact;
 use App\Controller\Contact\DeleteContact;
 use App\Controller\Logout;
 use App\Controller\MakeLogin;
+use App\Controller\Newsletter\AddNewsletter;
+use App\Controller\Newsletter\DeleteNewsletter;
 use App\Controller\Testimonial\AddTestimonial;
 use App\Controller\Testimonial\DeleteTestimonial;
 use App\Controller\Testimonial\UpdateTestimonial;
@@ -20,6 +22,7 @@ use App\View\Admin\Users\UserAdd;
 use App\View\Admin\Users\UserEdit;
 use App\View\Home;
 use App\View\Login;
+use App\View\Admin\Newsletter\TableNewsletter;
 
 
 return [
@@ -53,5 +56,10 @@ return [
     '/admin/testimonial-edit' => TestimonialEdit::class,
     '/save-testimonial' => AddTestimonial::class,
     '/update-testimonial' => UpdateTestimonial::class,
-    '/delete-testimonial' => DeleteTestimonial::class
+    '/delete-testimonial' => DeleteTestimonial::class,
+
+    // Newsletter
+    '/admin/newsletter' => TableNewsletter::class,
+    '/save-newsletter' => AddNewsletter::class,
+    '/delete-newsletter' => DeleteNewsletter::class
 ];

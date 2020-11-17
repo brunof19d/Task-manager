@@ -39,7 +39,7 @@
             <li class="nav-item"><a class="nav-link" href="/admin">Home Admin</a></li>
             <li class="nav-item"><a class="nav-link" href="/admin/contact">Contact</a></li>
             <li class="nav-item"><a class="nav-link" href="/admin/testimonial">Testimonial</a></li>
-            <li class="nav-item"><a class="nav-link" href="">Newsletter</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/newsletter">Newsletter</a></li>
             <li class="nav-item"><a class="nav-link" href="">Portfolio</a></li>
             <li class="nav-item"><a class="nav-link" href="">Services</a></li>
             <li class="nav-item"><a class="nav-link" href="/admin/users">Users</a></li>
