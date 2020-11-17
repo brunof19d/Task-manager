@@ -43,7 +43,7 @@ class AddTestimonial implements RequestHandlerInterface
             $type = $file->getClientMediaType();
 
             $newName = $this->helper->verifyImage($name, $type);
-            $file->moveTo(__DIR__ . '/../../../public/files_uploaded/' . $newName);
+            $file->moveTo(__DIR__ . '/../../../public/files_uploaded/testimonial/' . $newName);
 
             $this->testimonial
                 ->setName($data['name'])

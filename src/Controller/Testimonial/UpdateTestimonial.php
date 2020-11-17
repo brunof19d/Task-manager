@@ -45,7 +45,7 @@ class UpdateTestimonial implements RequestHandlerInterface
                 $type = $file->getClientMediaType();
 
                 $fileName = $this->helper->verifyImage($name, $type);
-                $file->moveTo(__DIR__ . '/../../../public/files_uploaded/' . $fileName);
+                $file->moveTo(__DIR__ . '/../../../public/files_uploaded/testimonial/' . $fileName);
             } else {
                 $fileName = $data['photo'];
             }

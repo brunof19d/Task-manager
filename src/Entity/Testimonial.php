@@ -87,6 +87,8 @@ class Testimonial
 
         if ($text === FALSE) throw new Exception('The text field is required');
 
+        if (strlen($text) > 150) throw new Exception('Text cannot exceed 150 characters');
+
         $this->text = $text;
         return $this;
     }

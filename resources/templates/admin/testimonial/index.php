@@ -36,11 +36,11 @@ require_once __DIR__ . '/../../../includes/header-admin.php';
                     <td scope="row"><?= $testimonial->getId(); ?></td>
 
                     <td>
-                        <?php if (is_null($testimonial->getPhoto())): ?>
+                        <?php if (empty($testimonial->getPhoto())): ?>
                             <img src="https://placehold.it/100x100" width="100" class="img-responsive"
                                  alt="photo_person">
                         <?php else: ?>
-                            <img src="/files_uploaded/<?= $testimonial->getPhoto() ?>" width="100"
+                            <img src="/files_uploaded/testimonial/<?= $testimonial->getPhoto() ?>" width="100"
                                  class="img-responsive" alt="photo_person">
                         <?php endif; ?>
                     </td>

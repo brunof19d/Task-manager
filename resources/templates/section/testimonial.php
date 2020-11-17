@@ -36,7 +36,7 @@
                                     <?php if (empty($testimonial->getPhoto())): ?>
                                         <img src="https://placehold.it/100x100" class="img-responsive" alt="photo_person">
                                     <?php else: ?>
-                                        <img src="/files_uploaded/<?= $testimonial->getPhoto(); ?>" class="img-responsive" alt="photo_person">
+                                        <img src="/files_uploaded/testimonial/<?= $testimonial->getPhoto(); ?>" class="img-responsive" alt="photo_person">
                                     <?php endif; ?>
 
                                     <!-- Name Person -->
