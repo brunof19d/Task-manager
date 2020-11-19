@@ -2,7 +2,7 @@
 
     <div class="jumbotron container p-5 mb-5">
         <h1 class="h2"><span class="text-secondary">Services /</span> New Service</h1>
-        <a href="" class="btn btn-success">Back</a>
+        <a href="/admin/services" class="btn btn-success">Back</a>
         <hr>
         <p class="lead mb-0">Use the form below to register a new service on the site.</p>
     </div>
@@ -11,7 +11,7 @@
 
         <?php require_once __DIR__ . '/../../../includes/alert-message.php'; ?>
 
-        <form method="POST" class="card" action="">
+        <form method="POST" class="card" action="/save-services">
             <div class="card-body">
                 <div class="row">
 

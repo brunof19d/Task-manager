@@ -6,6 +6,9 @@ use App\Controller\Logout;
 use App\Controller\MakeLogin;
 use App\Controller\Newsletter\AddNewsletter;
 use App\Controller\Newsletter\DeleteNewsletter;
+use App\Controller\Services\AddServicesController;
+use App\Controller\Services\DeleteServices;
+use App\Controller\Services\UpdateServicesController;
 use App\Controller\Testimonial\AddTestimonial;
 use App\Controller\Testimonial\DeleteTestimonial;
 use App\Controller\Testimonial\UpdateTestimonial;
@@ -14,6 +17,9 @@ use App\Controller\Users\DeleteUser;
 use App\Controller\Users\UpdateUser;
 use App\View\Admin\AdminHome;
 use App\View\Admin\Contact\TableContact;
+use App\View\Admin\Services\AddServices;
+use App\View\Admin\Services\TableServices;
+use App\View\Admin\Services\UpdateServices;
 use App\View\Admin\Testimonial\TableTestimonial;
 use App\View\Admin\Testimonial\TestimonialAdd;
 use App\View\Admin\Testimonial\TestimonialEdit;
@@ -23,7 +29,6 @@ use App\View\Admin\Users\UserEdit;
 use App\View\Home;
 use App\View\Login;
 use App\View\Admin\Newsletter\TableNewsletter;
-
 
 return [
 
@@ -61,5 +66,14 @@ return [
     // Newsletter
     '/admin/newsletter' => TableNewsletter::class,
     '/save-newsletter' => AddNewsletter::class,
-    '/delete-newsletter' => DeleteNewsletter::class
+    '/delete-newsletter' => DeleteNewsletter::class,
+
+    // Services
+    '/admin/services' => TableServices::class,
+    '/admin/services-add' => AddServices::class,
+    '/admin/services-edit' => UpdateServices::class,
+    '/save-services' => AddServicesController::class,
+    '/update-services' => UpdateServicesController::class,
+    '/delete-services' => DeleteServices::class
+
 ];

@@ -4,10 +4,10 @@
  * @author Bruno Dadario <brunof19d@gmail.com>
  */
 
-namespace App\View;
+namespace App\View\Admin\Services;
 
 use App\Entity\Service;
-use App\Entity\Testimonial;
+use App\Helper\FlashMessage;
 use App\Helper\RenderHtml;
 use Doctrine\ORM\EntityManagerInterface;
 use Nyholm\Psr7\Response;
@@ -15,9 +15,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class Home implements RequestHandlerInterface
+class UpdateServices implements RequestHandlerInterface
 {
     use RenderHtml;
+    use FlashMessage;
 
     private EntityManagerInterface $entityManager;
 
@@ -28,18 +29,18 @@ class Home implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $testimonials = $this->entityManager
-            ->getRepository(Testimonial::class)
-            ->findAll();
+        $id = filter_var($request->getQueryParams()['id'], FILTER_VALIDATE_INT);
 
-        $services = $this->entityManager
-            ->getRepository(Service::class)
-            ->findAll();
+        if ($id === FALSE) {
+            $this->alertMessage('danger', 'ID Service invalid');
+            return new Response(302, ['Location' => '/admin/services']);
+        }
 
-        $html = $this->render('index.php', [
-            'title' => 'Landing Page',
-            'testimonials' => $testimonials,
-            'services' => $services
+        $service = $this->entityManager->getReference(Service::class, $id);
+
+        $html = $this->render('admin/services/form-edit.php', [
+            'title' => 'Admin | Update Service',
+            'service' => $service
         ]);
 
         return new Response(200, [], $html);
