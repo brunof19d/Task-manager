@@ -6,6 +6,11 @@ use App\Controller\Logout;
 use App\Controller\MakeLogin;
 use App\Controller\Newsletter\AddNewsletter;
 use App\Controller\Newsletter\DeleteNewsletter;
+use App\Controller\Portfolio\AddCategoryController;
+use App\Controller\Portfolio\AddPortfolioController;
+use App\Controller\Portfolio\DeleteCategory;
+use App\Controller\Portfolio\DeletePortfolio;
+use App\Controller\Portfolio\UpdatePortfolioController;
 use App\Controller\Services\AddServicesController;
 use App\Controller\Services\DeleteServices;
 use App\Controller\Services\UpdateServicesController;
@@ -17,6 +22,11 @@ use App\Controller\Users\DeleteUser;
 use App\Controller\Users\UpdateUser;
 use App\View\Admin\AdminHome;
 use App\View\Admin\Contact\TableContact;
+use App\View\Admin\Portfolio\AddCategory;
+use App\View\Admin\Portfolio\AddPortfolio;
+use App\View\Admin\Portfolio\TableCategory;
+use App\View\Admin\Portfolio\TablePortfolio;
+use App\View\Admin\Portfolio\UpdatePortfolio;
 use App\View\Admin\Services\AddServices;
 use App\View\Admin\Services\TableServices;
 use App\View\Admin\Services\UpdateServices;
@@ -67,6 +77,20 @@ return [
     '/admin/newsletter' => TableNewsletter::class,
     '/save-newsletter' => AddNewsletter::class,
     '/delete-newsletter' => DeleteNewsletter::class,
+
+    // Portfolio
+    '/admin/portfolio' => TablePortfolio::class,
+    '/admin/portfolio-add' => AddPortfolio::class,
+    '/admin/portfolio-edit' => UpdatePortfolio::class,
+    '/save-portfolio' => AddPortfolioController::class,
+    '/update-portfolio' => UpdatePortfolioController::class,
+    '/delete-portfolio' => DeletePortfolio::class,
+
+    // Portfolio Category
+    '/admin/portfolio/category' => TableCategory::class,
+    '/admin/portfolio/add-category' => AddCategory::class,
+    '/save-category' => AddCategoryController::class,
+    '/delete-category' => DeleteCategory::class,
 
     // Services
     '/admin/services' => TableServices::class,

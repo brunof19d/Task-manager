@@ -1,92 +1,66 @@
 <?php
 
-# Configurações Gerais
-require_once 'config.php';
-$msg = get_mensagem();
+require_once __DIR__ . '/../../../includes/header-admin.php';
 
-try
-{
-    if (isset($_GET['excluir']))
-    {
-        $id = filter_var($_GET['excluir'], FILTER_VALIDATE_INT);
-        if (!ProjetoDAO::excluir($id)) {
-            throw new Exception('Não foi possível excluir o projeto selecionado!');
-        }
-
-        set_mensagem('Projeto excluído com sucesso!', 'alert-success', 'index.php');
-    }
-}
-catch(Exception $e)
-{
-    set_mensagem($e->getMessage(), 'alert-danger', 'index.php');
-}
-
-# Lista de Projetos do Portfolio
-$lista_projetos = ProjetoDAO::getProjetos();
-
-# Configurações da Página
-$titulo_pagina = "Administração | Portfolio";
-$link_ativo = 'portfolio';
-require_once 'includes/header-admin.php';
+/**
+ * @var \App\Entity\Portfolio $portfolio
+ * @var \App\Helper\HelperFunctions $helper
+ */
 
 ?>
 
-    <!-- CONTEUDO -->
     <div class="jumbotron container p-5 mb-5">
-        <h1 class="h2 float-left">Portfolio</h1>
-        <a href="adicionar.php" class="btn btn-success float-right ml-2">
-            Novo Projeto
-        </a>
-        <a href="categorias.php" class="btn btn-primary float-right ml-2">
-            Gerenciar Categorias
-        </a>
-        <div class="clearfix"></div>
+        <h1 class="h2">Portfolio</h1>
+        <a href="/admin/portfolio-add" class="btn btn-success">New Project</a>
+        <a href="/admin/portfolio/category" class="btn btn-primary">Manage Categories</a>
         <hr>
-        <p class="lead mb-0">
-            Confira abaixo todos os projetos cadastrados para exibição no site.
-        </p>
+        <p class="lead mb-0">Check out all the projects registered for display on the website below</p>
     </div>
+
     <div class="container">
 
-    <?php include_once "templates/alert-mensagens.php"; ?>
+        <?php include_once __DIR__ . '/../../../includes/alert-message.php'; ?>
 
         <table class="table table-striped">
             <thead class="thead-dark">
-              <tr>
+            <tr>
                 <th scope="col">#</th>
-                <th scope="col">Imagem</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Título</th>
-                <th scope="col">Data do Projeto</th>
-                <th scope="col">Ativo?</th>
-                <th scope="col" width="10%" colspan="2"></th>
-              </tr>
+                <th scope="col">Image</th>
+                <th scope="col">Category</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Date</th>
+                <th scope="col">Active</th>
+                <th scope="col" colspan="2"></th>
+            </tr>
             </thead>
             <tbody>
-                
-            <?php foreach ($lista_projetos as $projeto) : ?>
+            <?php foreach ($portfolios as $portfolio): ?>
                 <tr>
-                    <th scope="row"><?= $projeto->getId() ?></th>
-                    <td><img src="<?= get_imagem_url( $projeto->getImagem() ) ?>" width="100" class="img-responsive" /></td>
-                    <td><?= $projeto->getCategoria()->getNome() ?></td>
-                    <td><?= $projeto->getTitulo() ?></td>
-                    <td><?= get_data_formatada( $projeto->getDataProjeto() ) ?></td>
-                    <td><?= $projeto->isAtivo() ? 'Sim' : 'Não' ?></td>
+                    <th scope="row"><?= $portfolio->getId(); ?></th>
                     <td>
-                        <a href="editar.php?id=<?= $projeto->getId() ?>" class="btn btn-primary" title="Editar">
+                        <img src="/files_uploaded/portfolio/<?= $portfolio->getPhoto(); ?>" width="100"
+                             class="img-responsive"/>
+                    </td>
+                    <td><?= $portfolio->getCategory()->getName(); ?></td>
+                    <td><?= $portfolio->getTitle(); ?></td>
+                    <td><?= $portfolio->getDescription(); ?></td>
+                    <td><?= $portfolio->getDate()->format('d/m/Y'); ?></td>
+                    <td><?= $helper->translatesUserActive($portfolio->getActive()); ?></td>
+                    <td>
+                        <a href="portfolio-edit?id=<?=$portfolio->getId();?>" class="btn btn-primary" title="Edit">
                             <i class="far fa-edit"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="index.php?excluir=<?= $projeto->getId() ?>" class="btn btn-danger" title="Excluir">
+                        <a href="/delete-portfolio?id=<?=$portfolio->getId();?>" class="btn btn-danger" title="Delete">
                             <i class="far fa-trash-alt"></i>
                         </a>
                     </td>
                 </tr>
             <?php endforeach; ?>
-
             </tbody>
-          </table>
+        </table>
     </div>
-    
-<?php require_once 'includes/footer-admin.php'; ?> 
+
+<?php require_once __DIR__ . '/../../../includes/footer-admin.php'; ?>

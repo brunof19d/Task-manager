@@ -22,7 +22,7 @@ class Newsletter
     private string $email;
 
     /**
-     * @Column (type="date_immutable")
+     * @Column (type="datetime")
      */
     private \DateTimeImmutable $date;
 
