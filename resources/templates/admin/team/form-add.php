@@ -2,7 +2,7 @@
 
     <div class="jumbotron container p-5 mb-5">
         <h1 class="h2"><span class="text-secondary">Team /</span> New Contributor</h1>
-        <a href="" class="btn btn-info">Back</a>
+        <a href="/admin/team" class="btn btn-info">Back</a>
         <hr>
         <p class="lead mb-0">Use the form below to register a new employee on your company's team.</p>
     </div>

@@ -30,6 +30,9 @@ use App\View\Admin\Portfolio\UpdatePortfolio;
 use App\View\Admin\Services\AddServices;
 use App\View\Admin\Services\TableServices;
 use App\View\Admin\Services\UpdateServices;
+use App\View\Admin\Team\TableTeam;
+use App\View\Admin\Team\TeamAdd;
+use App\View\Admin\Team\TeamEdit;
 use App\View\Admin\Testimonial\TableTestimonial;
 use App\View\Admin\Testimonial\TestimonialAdd;
 use App\View\Admin\Testimonial\TestimonialEdit;
@@ -98,6 +101,11 @@ return [
     '/admin/services-edit' => UpdateServices::class,
     '/save-services' => AddServicesController::class,
     '/update-services' => UpdateServicesController::class,
-    '/delete-services' => DeleteServices::class
+    '/delete-services' => DeleteServices::class,
+
+    // Team
+    '/admin/team' => TableTeam::class,
+    '/admin/team-add' => TeamAdd::class,
+    '/admin/team-edit' => TeamEdit::class
 
 ];

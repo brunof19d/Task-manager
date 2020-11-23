@@ -42,11 +42,12 @@
             <li class="nav-item"><a class="nav-link" href="/admin/newsletter">Newsletter</a></li>
             <li class="nav-item"><a class="nav-link" href="/admin/portfolio">Portfolio</a></li>
             <li class="nav-item"><a class="nav-link" href="/admin/services">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="/admin/team">Team</a></li>
             <li class="nav-item"><a class="nav-link" href="/admin/users">Users</a></li>
         </ul>
 
         <?php if ($_SERVER['PATH_INFO'] !== '/login'): ?>
-        <span class="navbar-text"><a href="/logout" class="text-warning">Logout</a></span>
+            <span class="navbar-text"><a href="/logout" class="text-warning">Logout</a></span>
         <?php endif; ?>
 
     </div>
