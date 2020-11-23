@@ -7,6 +7,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\ORM\Mapping as ORM;
 use Exception;
 
 /**
@@ -22,9 +23,9 @@ class Portfolio
     private int $id;
 
     /**
-     * @Column (type="string")
+     * @Column (type="string", nullable=true)
      */
-    private string $photo;
+    private ?string $photo;
 
     /**
      * @Column (type="string")
@@ -56,12 +57,12 @@ class Portfolio
         return $this->id;
     }
 
-    public function getPhoto(): string
+    public function getPhoto(): ?string
     {
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): Portfolio
+    public function setPhoto(?string $photo): Portfolio
     {
         $this->photo = $photo;
         return $this;
@@ -92,7 +93,11 @@ class Portfolio
     {
         $description = filter_var($description, FILTER_SANITIZE_STRING);
 
-        if ($description === FALSE) throw new Exception('Title invalid');
+        if ($description === FALSE) {
+            throw new Exception('Text description invalid');
+        } elseif (strlen($description) > 255) {
+            throw new Exception('Text description is limit on 255 characters.');
+        }
 
         $this->description = $description;
 

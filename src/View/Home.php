@@ -6,10 +6,12 @@
 
 namespace App\View;
 
+use App\Entity\Portfolio;
 use App\Entity\Service;
 use App\Entity\Testimonial;
 use App\Helper\RenderHtml;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -36,12 +38,30 @@ class Home implements RequestHandlerInterface
             ->getRepository(Service::class)
             ->findAll();
 
+        $dqlPortfolio = "SELECT portfolio FROM App\Entity\Portfolio portfolio";
+        $query = $this->entityManager->createQuery($dqlPortfolio);
+
+        $paginator = new Paginator($query);
+        $totalItemsQuery = count($paginator);
+        $itemsPerPage = 3; //
+        $totalPages = ceil($totalItemsQuery / $itemsPerPage);
+
+        $page = 1;
+        if (isset($request->getQueryParams()['page'])) {
+            $page = $request->getQueryParams()['page'];
+        }
+
+        $paginator->getQuery()
+            ->setFirstResult($itemsPerPage * ($page-1))
+            ->setMaxResults($itemsPerPage);
+
         $html = $this->render('index.php', [
             'title' => 'Landing Page',
             'testimonials' => $testimonials,
-            'services' => $services
+            'services' => $services,
+            'portfolios' => $paginator,
+            'pagesCount' => $totalPages
         ]);
-
         return new Response(200, [], $html);
     }
 }

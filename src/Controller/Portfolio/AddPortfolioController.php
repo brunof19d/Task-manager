@@ -41,17 +41,24 @@ class AddPortfolioController implements RequestHandlerInterface
             $data = $request->getParsedBody(); // Data Form Received
 
             $category = filter_var($data['category'], FILTER_VALIDATE_INT);
-            if ($category === FALSE) throw new Exception('Category ID Invalid');
+            if ($category === FALSE) {
+                throw new Exception('Category ID Invalid');
+            }
 
             $categoryRepository = $this->entityManager
                 ->find(CategoryPortfolio::class, $category);
 
-            // Verify Image
             $file = $request->getUploadedFiles()['photo'];
             /** @var UploadedFile $file */
             $nameFile = $file->getClientFilename();
-            $typeFile = $file->getClientMediaType();
-            $newNameFile = $this->helper->verifyImage($nameFile, $typeFile);
+
+            if (empty($nameFile) === FALSE) {
+                $typeFile = $file->getClientMediaType();
+                $newNameFile = $this->helper->verifyImage($nameFile, $typeFile);
+                $file->moveTo(__DIR__ . '/../../../public/files_uploaded/portfolio/' . $newNameFile);
+            } else {
+                $newNameFile = null;
+            }
 
             $this->portfolio
                 ->setTitle($data['title'])
@@ -63,9 +70,6 @@ class AddPortfolioController implements RequestHandlerInterface
 
             $this->entityManager->persist($this->portfolio);
             $this->entityManager->flush();
-
-            // Move image for path folder.
-            $file->moveTo(__DIR__ . '/../../../public/files_uploaded/portfolio/' . $newNameFile);
 
             $this->alertMessage('success', 'Portfolio added with success');
             return new Response(302, ['Location' => '/admin/portfolio']);

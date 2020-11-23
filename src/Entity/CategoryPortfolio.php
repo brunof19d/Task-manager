@@ -6,6 +6,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @Entity
  */
@@ -22,6 +26,21 @@ class CategoryPortfolio
      * @Column (type="string")
      */
     private string $name;
+
+    /**
+     * @OneToMany(targetEntity="App\Entity\Portfolio", mappedBy="category")
+     */
+    private Collection $portfolio;
+
+    public function __construct()
+    {
+        $this->portfolio = new ArrayCollection();
+    }
+
+    public function getPortfolio()
+    {
+        return $this->portfolio;
+    }
 
     public function getId(): int
     {

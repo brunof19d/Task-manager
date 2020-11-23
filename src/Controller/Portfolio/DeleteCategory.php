@@ -36,6 +36,13 @@ class DeleteCategory implements RequestHandlerInterface
 
             $category = $this->entityManager->getReference(CategoryPortfolio::class, $id);
 
+            /** @var CategoryPortfolio $category */
+
+            $containsInPortfolio = $category->getPortfolio()->count();
+            if ($containsInPortfolio !== 0) {
+                throw new Exception('It is not possible to delete this category, it is being used in some Portfolio');
+            }
+
             $this->entityManager->remove($category);
             $this->entityManager->flush();
 

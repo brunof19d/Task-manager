@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../../../includes/header-admin.php';
 
 /**
+ * @var \App\View\Admin\Portfolio\TablePortfolio $portfolios
  * @var \App\Entity\Portfolio $portfolio
  * @var \App\Helper\HelperFunctions $helper
  */
@@ -38,9 +39,13 @@ require_once __DIR__ . '/../../../includes/header-admin.php';
             <?php foreach ($portfolios as $portfolio): ?>
                 <tr>
                     <th scope="row"><?= $portfolio->getId(); ?></th>
+
                     <td>
-                        <img src="/files_uploaded/portfolio/<?= $portfolio->getPhoto(); ?>" width="100"
-                             class="img-responsive"/>
+                        <?php if ( empty ( $portfolio->getPhoto() ) ): ?>
+                            <img src="https://placehold.it/100x100" width="100" class="img-responsive" alt="photo_person">
+                        <?php else: ?>
+                            <img src="/files_uploaded/portfolio/<?= $portfolio->getPhoto(); ?>" width="100" class="img-responsive" alt="photo_person"/>
+                        <?php endif; ?>
                     </td>
                     <td><?= $portfolio->getCategory()->getName(); ?></td>
                     <td><?= $portfolio->getTitle(); ?></td>
@@ -48,12 +53,12 @@ require_once __DIR__ . '/../../../includes/header-admin.php';
                     <td><?= $portfolio->getDate()->format('d/m/Y'); ?></td>
                     <td><?= $helper->translatesUserActive($portfolio->getActive()); ?></td>
                     <td>
-                        <a href="portfolio-edit?id=<?=$portfolio->getId();?>" class="btn btn-primary" title="Edit">
+                        <a href="portfolio-edit?id=<?= $portfolio->getId(); ?>" class="btn btn-primary" title="Edit">
                             <i class="far fa-edit"></i>
                         </a>
                     </td>
                     <td>
-                        <a href="/delete-portfolio?id=<?=$portfolio->getId();?>" class="btn btn-danger" title="Delete">
+                        <a href="/delete-portfolio?id=<?= $portfolio->getId(); ?>" class="btn btn-danger" title="Delete">
                             <i class="far fa-trash-alt"></i>
                         </a>
                     </td>

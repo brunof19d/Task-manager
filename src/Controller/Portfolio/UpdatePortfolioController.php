@@ -1,10 +1,10 @@
 <?php
+
 /**
  * @author Bruno Dadario <brunof19d@gmail.com>
  */
 
 namespace App\Controller\Portfolio;
-
 
 use App\Entity\CategoryPortfolio;
 use App\Entity\Portfolio;
@@ -35,6 +35,7 @@ class UpdatePortfolioController implements RequestHandlerInterface
     {
         $data = $request->getParsedBody();
         $id = $data['id'];
+
         try {
             $category = filter_var($data['category'], FILTER_VALIDATE_INT);
             if ($category === FALSE) throw new Exception('Category ID Invalid');
@@ -66,11 +67,9 @@ class UpdatePortfolioController implements RequestHandlerInterface
                 ->setDescription($data['description'])
                 ->setPhoto($fileName)
                 ->setActive($data['active'])
-                ->setCategory($categoryRepository)
-            ;
+                ->setCategory($categoryRepository);
 
             $this->entityManager->flush();
-
             $this->alertMessage('success', 'Portfolio edited with success');
 
             return new Response(200, ['Location' => '/admin/portfolio']);
