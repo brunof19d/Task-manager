@@ -53,9 +53,7 @@ return [
     '/make-login' => MakeLogin::class,
     '/logout' => Logout::class,
 
-    /* ADMIN SECTION */
-
-    // Home
+    // Home Admin
     '/admin' => AdminHome::class,
 
     // Admin users
@@ -66,12 +64,12 @@ return [
     '/update-user' => UpdateUser::class,
     '/delete-user' => DeleteUser::class,
 
-    // TableContact Admin
+    // TableContact
     '/admin/contact' => TableContact::class,
     '/save-contact' => AddContact::class,
     '/delete-contact' => DeleteContact::class,
 
-    // Testimonial Admin
+    // Testimonial
     '/admin/testimonial' => TableTestimonial::class,
     '/admin/testimonial-add' => TestimonialAdd::class,
     '/admin/testimonial-edit' => TestimonialEdit::class,

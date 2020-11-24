@@ -1,12 +1,14 @@
 <?php
 
+/**
+ * @author Bruno Dadario <brunof19d@gmail.com>
+ */
 
 namespace App\Controller\Newsletter;
 
-
 use App\Entity\Newsletter;
 use App\Helper\FlashMessage;
-use DateTimeImmutable;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Nyholm\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
@@ -28,11 +30,11 @@ class AddNewsletter implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $redirect = new Response(302, ['Location' => '/home#home']);
+        $redirect = new Response(302, ['Location' => '/home']);
         try {
             $email = filter_var($request->getParsedBody()['email'], FILTER_VALIDATE_EMAIL);
             if ($email === FALSE) throw new \Exception('Email invalid');
-            $date = new DateTimeImmutable();
+            $date = new DateTime();
             $this->newsletter
                 ->setEmail($email)
                 ->setDate($date);

@@ -24,10 +24,16 @@ if (!array_key_exists($pathInfo, $routes)) {
 session_start();
 
 $routeLogin = stripos($pathInfo, 'login');
+$routeAdmin = stripos($pathInfo, 'admin');
 
-if ($pathInfo != '/home' && isset($_SESSION['logged']) === FALSE && $routeLogin === FALSE) {
+if ($routeLogin != FALSE && isset($_SESSION['logged']) === TRUE ) {
+    header('Location: /admin');
+    exit;
+}
+
+if ($pathInfo != '/home' && $routeAdmin != FALSE && isset($_SESSION['logged']) === FALSE) {
     header('Location: /login');
-    exit();
+    exit;
 }
 
 $psr17Factory = new Psr17Factory();
