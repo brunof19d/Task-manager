@@ -6,6 +6,7 @@
 
 namespace App\View\Admin\Team;
 
+use App\Entity\Employee;
 use App\Helper\FlashMessage;
 use App\Helper\RenderHtml;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,19 +30,23 @@ class TeamEdit implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-
         try {
             $id = filter_var($request->getQueryParams()['id'], FILTER_VALIDATE_INT);
             if ($id === FALSE) throw new Exception('ID Employee invalid');
 
+            $employee = $this->entityManager
+                ->getRepository(Employee::class)
+                ->find($id);
+
             $html = $this->render('/admin/team/form-edit.php', [
-                'title' => 'Admin | Team Edit'
+                'title' => 'Admin | Employee Edit',
+                'employee' => $employee
             ]);
 
             return new Response(200, [], $html);
         } catch (Exception $error) {
             $this->alertMessage('danger', $error->getMessage());
-            return new Response(302, ['Location' => '']);
+            return new Response(302, ['Location' => '/admin/team']);
         }
     }
 }

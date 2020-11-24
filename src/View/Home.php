@@ -6,6 +6,7 @@
 
 namespace App\View;
 
+use App\Entity\Employee;
 use App\Entity\Portfolio;
 use App\Entity\Service;
 use App\Entity\Testimonial;
@@ -38,6 +39,10 @@ class Home implements RequestHandlerInterface
             ->getRepository(Service::class)
             ->findAll();
 
+        $employees = $this->entityManager
+            ->getRepository(Employee::class)
+            ->findAll();
+
         $dqlPortfolio = "SELECT portfolio FROM App\Entity\Portfolio portfolio";
         $query = $this->entityManager->createQuery($dqlPortfolio);
 
@@ -52,13 +57,14 @@ class Home implements RequestHandlerInterface
         }
 
         $paginator->getQuery()
-            ->setFirstResult($itemsPerPage * ($page-1))
+            ->setFirstResult($itemsPerPage * ($page - 1))
             ->setMaxResults($itemsPerPage);
 
         $html = $this->render('index.php', [
             'title' => 'Landing Page',
             'testimonials' => $testimonials,
             'services' => $services,
+            'employees' => $employees,
             'portfolios' => $paginator,
             'pagesCount' => $totalPages
         ]);

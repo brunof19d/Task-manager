@@ -2,6 +2,9 @@
 
 use App\Controller\Contact\AddContact;
 use App\Controller\Contact\DeleteContact;
+use App\Controller\Employee\AddEmployeeController;
+use App\Controller\Employee\DeleteEmployeeController;
+use App\Controller\Employee\UpdateEmployeeController;
 use App\Controller\Logout;
 use App\Controller\MakeLogin;
 use App\Controller\Newsletter\AddNewsletter;
@@ -103,9 +106,12 @@ return [
     '/update-services' => UpdateServicesController::class,
     '/delete-services' => DeleteServices::class,
 
-    // Team
+    // Employee
     '/admin/team' => TableTeam::class,
     '/admin/team-add' => TeamAdd::class,
-    '/admin/team-edit' => TeamEdit::class
+    '/admin/team-edit' => TeamEdit::class,
+    '/save-employee' => AddEmployeeController::class,
+    '/update-employee' => UpdateEmployeeController::class,
+    '/delete-employee' => DeleteEmployeeController::class
 
 ];

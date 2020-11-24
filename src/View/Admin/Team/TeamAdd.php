@@ -19,7 +19,7 @@ class TeamAdd implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $html = $this->render('/admin/team/form-add.php', [
-            'title' => 'Admin | Team Add'
+            'title' => 'Admin | Employee Add'
         ]);
 
         return new Response(200, [], $html);
