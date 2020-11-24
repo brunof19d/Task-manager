@@ -1,8 +1,12 @@
 <?php
 
+/**
+ * @author Bruno Dadario <brunof19d@gmail.com>
+ */
 
 namespace App\Entity;
 
+use DateTime;
 
 /**
  * @Entity
@@ -24,7 +28,7 @@ class Newsletter
     /**
      * @Column (type="datetime")
      */
-    private \DateTimeImmutable $date;
+    private DateTime $date;
 
     public function getId(): int
     {
@@ -42,12 +46,12 @@ class Newsletter
         return $this;
     }
 
-    public function getDate(): \DateTimeImmutable
+    public function getDate(): DateTime
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeImmutable $date): Newsletter
+    public function setDate(DateTime $date): Newsletter
     {
         $this->date = $date;
         return $this;
