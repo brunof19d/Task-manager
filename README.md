@@ -30,7 +30,7 @@ Will open the main page, you can access the localhost admin area
  
     localhost:8080/admin
     
-    credenciais
+    credentials
     
     email: admin@admin.com
     password: admin
