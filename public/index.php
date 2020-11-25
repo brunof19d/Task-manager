@@ -6,7 +6,6 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../config/config.php';
 
 $routes = require __DIR__ . '/../config/routes.php';
 $pathInfo = $_SERVER['PATH_INFO'];
